@@ -1,28 +1,24 @@
 <section class="p-5">
   <div class="form-group">
-    <input type="search" class="form-control"  aria-describedby="search" placeholder="Search" #search>
+    <input type="search" class="form-control"  aria-describedby="search" placeholder="Search" [(ngModel)]="searched">
   </div>
 </section>
-<section class="h-100">
-  <table class="table table-dark">
+<section class="h-100 px-5 mh-100">
+  <table class="table table-dark" *ngIf="files && files.length && searched && searched !== ''">
+    <thead>
+      <tr>
+        <th>File ID</th>
+        <th>File name</th>
+        <th>File type</th>
+        <th>File path</th>
+      </tr>
+    </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>@twitter</td>
+      <tr *ngFor="let file of files | customFilter: searched" class="cursor-pointer" [ngbTooltip]="file?.commit_message">
+        <th scope="row">{{file?.id}}</th>
+        <td>{{file?.name}}</td>
+        <td>{{file?.type}}</td>
+        <td>{{file?.path}}</td>
       </tr>
     </tbody>
   </table>

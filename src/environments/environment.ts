@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  myKey: 'M2FBTwhM1jLeD9nSnV18',
+  userId: 7782225,
+  apiUrl: 'https://gitlab.com/api/v4'
 };
 
 /*
